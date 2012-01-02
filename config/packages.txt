@@ -1,0 +1,19 @@
+
+; version control
+git
+git-completion
+git-gui
+git-svn
+gitk
+mercurial
+cvs
+
+; better shell
+mintty
+
+; misc tools
+nano
+openssh
+rsync
+unzip
+zip
