@@ -28,3 +28,7 @@ def get_packages(file)
   end
   packages
 end
+
+def run(*command)
+  system(*command) or raise "command failed: #{command.join(' ')}"
+end
