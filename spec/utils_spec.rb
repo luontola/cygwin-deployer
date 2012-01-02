@@ -1,6 +1,5 @@
-require 'rspec'
+require_relative 'test_helpers'
 require 'fileutils'
-require_relative '../lib/utils'
 
 
 describe "download" do
@@ -15,7 +14,8 @@ describe "download" do
 
   it "downloads the file" do
     download('http://www.google.com/', @output_file)
-    File.exist?(@output_file).should
+    @output_file.should be_a_file
+    IO.read(@output_file).should include("text/html")
   end
 end
 
