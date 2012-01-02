@@ -1,15 +1,17 @@
 require_relative 'utils'
+require_relative 'template'
 
 APP_HOME = File.expand_path('..', File.dirname($0))
 
 BIN_DIR = "#{APP_HOME}/bin"
 CONFIG_DIR = "#{APP_HOME}/config"
+TEMPLATES_DIR = "#{APP_HOME}/templates"
 INSTALLER = "#{BIN_DIR}/setup.exe"
 PACKAGES_LIST = "#{CONFIG_DIR}/packages.txt"
 
-INSTALL_DIR = "C:\\cygwin-tmp"
-LOCAL_PACKAGE_DIR = "#{INSTALL_DIR}\\setup"
-SITE_URL = "ftp://ftp.sunet.se/pub/lang/cygwin/"
+CYGWIN_HOME = "C:\\cygwin-tmp"
+LOCAL_PACKAGE_DIR = "#{CYGWIN_HOME}\\setup"
+DOWNLOAD_SITE = "ftp://ftp.sunet.se/pub/lang/cygwin/"
 
 download("http://cygwin.com/setup.exe", INSTALLER) unless File.exist? INSTALLER
 
@@ -19,8 +21,8 @@ run(INSTALLER,
     '--quiet-mode',
     '--download',
     '--local-install',
-    '--site', SITE_URL,
-    '--root', INSTALL_DIR,
+    '--site', DOWNLOAD_SITE,
+    '--root', CYGWIN_HOME,
     '--local-package-dir', LOCAL_PACKAGE_DIR,
     '--packages', packages.join(','),
     '--no-shortcuts',
@@ -28,3 +30,10 @@ run(INSTALLER,
     '--no-desktop',
     '--disable-buggy-antivirus',
 )
+
+template = Template.new(CYGWIN_HOME, TEMPLATES_DIR)
+template.copy("Cygwin.bat")
+
+# FIXME: duplicates the contents when run multiple times
+# TODO: write ~/.profile based on /etc/skel/.profile and a template
+#template.copy("etc/profile")
