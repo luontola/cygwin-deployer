@@ -9,6 +9,7 @@ PACKAGES_LIST = "#{CONFIG_DIR}/packages.txt"
 
 INSTALL_DIR = "C:\\cygwin-tmp"
 LOCAL_PACKAGE_DIR = "#{INSTALL_DIR}\\setup"
+SITE_URL = "ftp://ftp.sunet.se/pub/lang/cygwin/"
 
 download("http://cygwin.com/setup.exe", INSTALLER) unless File.exist? INSTALLER
 
@@ -18,6 +19,7 @@ run(INSTALLER,
     '--quiet-mode',
     '--download',
     '--local-install',
+    '--site', SITE_URL,
     '--root', INSTALL_DIR,
     '--local-package-dir', LOCAL_PACKAGE_DIR,
     '--packages', packages.join(','),
