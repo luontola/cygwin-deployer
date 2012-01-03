@@ -1,15 +1,15 @@
-<%= include('/etc/skel/.profile') %>
+<%= include('/etc/skel/.bash_profile') %>
 
 # Start in specified directory (http://sources.redhat.com/ml/cygwin/2002-05/msg01645.html)
 # Modifications also needed in cygwin.bat
-if [ "$BASHHERE" != "" ]; then
+if [ "$BASH_HERE" != "" ]; then
   # remove surrounding quotes
-  BASHHERE=$( echo $BASHHERE | tr -d \" )
+  BASH_HERE=$( echo $BASH_HERE | tr -d \" )
   # convert Windows path to Unix path
-  BASHHERE=$( cygpath "$BASHHERE" )
+  BASH_HERE=$( cygpath "$BASH_HERE" )
   # if a regular file, change to its directory
-  if [ -f "$BASHHERE" ]; then
-    BASHHERE=$BASHHERE/..
+  if [ -f "$BASH_HERE" ]; then
+    BASH_HERE=$BASH_HERE/..
   fi
-  cd "$BASHHERE"
+  cd "$BASH_HERE"
 fi

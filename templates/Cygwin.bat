@@ -4,8 +4,8 @@ C:
 chdir "<%= @cygwin_home %>\bin"
 
 : Start in specified directory (http://sources.redhat.com/ml/cygwin/2002-05/msg01645.html)
-: Modifications needed also in \cygwin\etc\profile
-set BASHHERE=%1
+: Modifications needed also in /etc/profile or ~/.profile or ~/.bash_profile
+set BASH_HERE=%1
 
 : Use Windows' profile directory instead of Cygwin's home
 set HOME=%USERPROFILE%
