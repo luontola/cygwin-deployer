@@ -1,5 +1,5 @@
 require_relative 'utils'
-require_relative 'template'
+require_relative 'template_copier'
 
 APP_HOME = File.expand_path('..', File.dirname($0))
 
@@ -12,6 +12,9 @@ PACKAGES_LIST = "#{CONFIG_DIR}/packages.txt"
 CYGWIN_HOME = "C:\\cygwin-tmp"
 LOCAL_PACKAGE_DIR = "#{CYGWIN_HOME}\\setup"
 DOWNLOAD_SITE = "ftp://ftp.sunet.se/pub/lang/cygwin/"
+# TODO: find out the current customizations in %USERPROFILE% before overwriting them
+#USER_HOME = ENV['HOME']
+USER_HOME = "C:/cygwin-tmp/user-home-tmp"
 
 download("http://cygwin.com/setup.exe", INSTALLER) unless File.exist? INSTALLER
 
@@ -31,11 +34,7 @@ run(INSTALLER,
     '--disable-buggy-antivirus',
 )
 
-template = Template.new(CYGWIN_HOME, TEMPLATES_DIR)
-template.copy("Cygwin.bat")
-
-# TODO: copy /etc/skel/* to %USERPROFILE% and add customizations from templates
-
-# FIXME: duplicates the contents when run multiple times
-# TODO: write ~/.profile based on /etc/skel/.profile and a template
-#template.copy("etc/profile")
+tc = TemplateCopier.new(:cygwin_home => CYGWIN_HOME,
+                        :user_home => USER_HOME,
+                        :templates_dir => TEMPLATES_DIR)
+tc.copy_all

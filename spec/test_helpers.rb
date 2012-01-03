@@ -1,6 +1,6 @@
 require 'rspec'
 require_relative '../lib/utils'
-require_relative '../lib/template'
+require_relative '../lib/template_copier'
 
 RSpec::Matchers.define :be_a_file do
   match do |actual|
