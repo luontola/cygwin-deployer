@@ -1,0 +1,15 @@
+[user]
+	name = Esko Luontola
+	email = esko.luontola@gmail.com
+[core]
+	autocrlf = false
+	filemode = false
+[i18n]
+	commitencoding = utf-8
+	logoutputencoding = utf-8
+[push]
+	default = matching
+[color]
+	ui = auto
+[gui]
+	encoding = utf-8

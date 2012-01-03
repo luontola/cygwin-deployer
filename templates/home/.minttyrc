@@ -1,0 +1,7 @@
+Font=Bitstream Vera Sans Mono
+FontHeight=10
+BoldAsFont=yes
+Columns=150
+Rows=50
+ForegroundColour=225,225,225
+ClicksPlaceCursor=no
