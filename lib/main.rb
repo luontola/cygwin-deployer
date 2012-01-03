@@ -34,9 +34,7 @@ run(INSTALLER,
 template = Template.new(CYGWIN_HOME, TEMPLATES_DIR)
 template.copy("Cygwin.bat")
 
-# JRuby sets the HOME and USER environmental variables, and we must clear HOME or else Cygwin
-# will use that as our home directory, instead of /home like it would normally use.
-run("set \"HOME=\" && #{CYGWIN_HOME}\\Cygwin.bat")
+# TODO: copy /etc/skel/* to %USERPROFILE% and add customizations from templates
 
 # FIXME: duplicates the contents when run multiple times
 # TODO: write ~/.profile based on /etc/skel/.profile and a template
