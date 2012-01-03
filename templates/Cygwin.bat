@@ -11,7 +11,8 @@ set BASHHERE=%1
 set HOME=%USERPROFILE%
 
 : Other environmental variables
-set LANG=en_US.UTF-8
+rem set LANG=en_US.UTF-8
+set LANG=C.UTF-8
 
 : Start the shell
 rem bash --login -i
