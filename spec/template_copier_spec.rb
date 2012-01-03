@@ -51,6 +51,10 @@ describe TemplateCopier do
     pending # TODO
   end
 
+  it "files written to user's home directory are owned by that user" do
+    pending # TODO: how to test this?
+  end
+
   it "keeps Unix newlines in copied files" do
     IO.binread(file(@cygwin_home, 'unix_newlines')).should == "unix\nnewlines"
   end
