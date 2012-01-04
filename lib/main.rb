@@ -42,3 +42,7 @@ tc = TemplateCopier.new(:cygwin_home => CYGWIN_HOME,
                         :user_home => USER_HOME,
                         :templates_dir => TEMPLATES_DIR)
 tc.copy_all
+
+puts
+puts "Creating 'Open Bash Here' context menu"
+run('reg', 'import', File.join(CYGWIN_HOME, 'OpenBashHere.reg'))

@@ -18,5 +18,3 @@ set LANG=C.UTF-8
 rem bash --login -i
 rem rxvt -sr -g 140x50 -sl 10000 -bg black -fg white -fn "Bitstream Vera Sans Mono" -fb "Bitstream Vera Sans Mono Bold" -e /usr/bin/bash --login -i
 start mintty /usr/bin/bash --login -i
-
-: TODO: add "Open Bash Here" to the context menu for all files and directories

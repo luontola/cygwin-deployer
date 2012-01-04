@@ -45,4 +45,10 @@ class TemplateCopier
     puts "Including: #{file}"
     IO.binread(file)
   end
+
+  def escape_backslashes(path)
+    # Concerning the number of backslashes:
+    # http://stackoverflow.com/questions/1542214/weird-backslash-substitution-in-ruby
+    path.gsub('\\') { '\\\\' }
+  end
 end
