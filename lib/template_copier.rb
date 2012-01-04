@@ -11,11 +11,17 @@ class TemplateCopier
   end
 
   def copy_all
-    template_files = Dir.glob(File.join(@templates_dir, '**/*'), File::FNM_DOTMATCH).reject { |file_or_dir| Dir.exist?(file_or_dir) }
-    template_files.each { |file| process_template(file) }
+    profile_skeleton = File.join(@cygwin_home, 'etc/skel')
+    all_files_in(profile_skeleton).each { |file| FileUtils.cp(file, @user_home) }
+
+    all_files_in(@templates_dir).each { |file| process_template(file) }
   end
 
   private
+
+  def all_files_in(dir)
+    Dir.glob(File.join(dir, '**/*'), File::FNM_DOTMATCH).reject { |file_or_dir| Dir.exist?(file_or_dir) }
+  end
 
   def process_template(template_file)
     puts "\nProcessing template: #{template_file}"

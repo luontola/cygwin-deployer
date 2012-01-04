@@ -6,7 +6,7 @@ describe TemplateCopier do
   before(:all) do
     @sandbox = 'sandbox.tmp'
     @cygwin_home = dir('cygwin')
-    @user_home = dir('user')
+    @user_home = dir('user-home')
     @templates_dir = dir('templates')
 
     write(file(@templates_dir, 'global_file'), "global file")
@@ -16,6 +16,9 @@ describe TemplateCopier do
     write(file(@templates_dir, 'unix_newlines'), "unix\nnewlines")
     write(file(@templates_dir, 'dos_newlines'), "dos\r\nnewlines")
     write(file(@templates_dir, 'include_variable'), "included: <%= @cygwin_home %>")
+
+    write(file(@cygwin_home, 'etc/skel/.skeleton_file'), "original content")
+    write(file(@templates_dir, 'home/.skeleton_file'), "<%= include('/etc/skel/.skeleton_file') %>\nuser customizations")
 
     write(file(@cygwin_home, 'file_to_include'), "file to include")
     write(file(@templates_dir, 'include_file'), "included: <%= include('/file_to_include') %>")
@@ -44,15 +47,11 @@ describe TemplateCopier do
   end
 
   it "copies /etc/skel into the user's home directory" do
-    pending # TODO
+    file(@user_home, '.skeleton_file').should be_a_file
   end
 
   it "allows customizing the files from /etc/skel" do # i.e. copying the skeleton is done before writing the templates
-    pending # TODO
-  end
-
-  it "files written to user's home directory are owned by that user" do
-    pending # TODO: how to test this?
+    IO.binread(file(@user_home, '.skeleton_file')).should == "original content\nuser customizations"
   end
 
   it "keeps Unix newlines in copied files" do
