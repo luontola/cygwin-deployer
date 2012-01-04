@@ -12,7 +12,7 @@ class TemplateCopier
 
   def copy_all
     profile_skeleton = File.join(@cygwin_home, 'etc/skel')
-    all_files_in(profile_skeleton).each { |file| FileUtils.cp(file, @user_home) }
+    all_files_in(profile_skeleton).each { |file| copy_to_user_home(file) }
 
     all_files_in(@templates_dir).each { |file| process_template(file) }
   end
@@ -21,6 +21,15 @@ class TemplateCopier
 
   def all_files_in(dir)
     Dir.glob(File.join(dir, '**/*'), File::FNM_DOTMATCH).reject { |file_or_dir| Dir.exist?(file_or_dir) }
+  end
+
+  def copy_to_user_home(file)
+    # If the directory doesn't exist, 'cp' would create a file with the same name,
+    # so let's make sure the directory exists first.
+    # TODO: the directory will be owned by Administrators - change it? (though this happens only when testing)
+    FileUtils.mkdir_p(@user_home)
+
+    FileUtils.cp(file, @user_home)
   end
 
   def process_template(template_file)
