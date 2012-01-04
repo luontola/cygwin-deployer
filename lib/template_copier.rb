@@ -7,6 +7,7 @@ class TemplateCopier
   def initialize(options)
     @cygwin_home = options[:cygwin_home]
     @user_home = options[:user_home]
+    @username = options[:username]
     @templates_dir = options[:templates_dir]
   end
 
@@ -15,6 +16,8 @@ class TemplateCopier
     all_files_in(profile_skeleton).each { |file| copy_to_user_home(file) }
 
     all_files_in(@templates_dir).each { |file| process_template(file) }
+
+    cygwin_symlink(@user_home, File.join(@cygwin_home, 'home', @username))
   end
 
   private
@@ -49,8 +52,27 @@ class TemplateCopier
 
   def write(file, content)
     puts "Writing: #{file}"
-    FileUtils.mkdir_p(File.dirname(file))
+    create_parent_dirs(file)
     File.open(file, 'wb') { |f| f.write(content) }
+  end
+
+  def cygwin_symlink(target, link_name)
+    bytes = []
+    bytes += "!<symlink>".encode('US-ASCII').bytes.to_a
+    bytes += [255, 254] # BOM
+    bytes += target.encode('UTF-16LE').bytes.to_a
+    bytes += [0, 0] # string terminator
+
+    create_parent_dirs(link_name)
+    File.open(link_name, 'wb') { |file|
+      bytes.each { |byte| file.putc(byte) }
+    }
+
+    run('attrib', '-A', '+S', link_name)
+  end
+
+  def create_parent_dirs(file)
+    FileUtils.mkdir_p(File.dirname(file))
   end
 
   # methods usable in templates

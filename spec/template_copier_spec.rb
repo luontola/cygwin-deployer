@@ -25,6 +25,7 @@ describe TemplateCopier do
 
     tc = TemplateCopier.new(:cygwin_home => @cygwin_home,
                             :user_home => @user_home,
+                            :username => 'johndoe',
                             :templates_dir => @templates_dir)
     tc.copy_all
   end
@@ -52,6 +53,12 @@ describe TemplateCopier do
 
   it "allows customizing the files from /etc/skel" do # i.e. copying the skeleton is done before writing the templates
     IO.binread(file(@user_home, '.skeleton_file')).should == "original content\nuser customizations"
+  end
+
+  it "creates a symbolic link from /home/username to the user's real home directory" do
+    symlink = file(@cygwin_home, 'home/johndoe')
+    symlink.should be_a_file
+    IO.binread(symlink).should include(@user_home.encode('UTF-16LE').force_encoding('US-ASCII'))
   end
 
   it "keeps Unix newlines in copied files" do

@@ -17,6 +17,7 @@ end
 
 CYGWIN_HOME = get_path(:CYGWIN_HOME)
 USER_HOME = get_path(:USER_HOME)
+USERNAME = get_path(:USERNAME)
 DOWNLOAD_SITE = get_path(:DOWNLOAD_SITE)
 LOCAL_PACKAGE_DIR = "#{CYGWIN_HOME}\\setup"
 
@@ -40,6 +41,7 @@ run(INSTALLER,
 
 tc = TemplateCopier.new(:cygwin_home => CYGWIN_HOME,
                         :user_home => USER_HOME,
+                        :username => USERNAME,
                         :templates_dir => TEMPLATES_DIR)
 tc.copy_all
 
