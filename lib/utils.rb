@@ -32,3 +32,9 @@ end
 def run(*command)
   system(*command) or raise "command failed: #{command.join(' ')}"
 end
+
+def recently_modified?(file)
+  hour = 60 * 60
+  limit = Time.new - (24 * hour)
+  File.exist?(file) && File.mtime(file) > limit
+end

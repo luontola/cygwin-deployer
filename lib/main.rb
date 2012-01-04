@@ -16,7 +16,7 @@ DOWNLOAD_SITE = "ftp://ftp.sunet.se/pub/lang/cygwin/"
 #USER_HOME = ENV['HOME']
 USER_HOME = "C:/cygwin-tmp/user-home-tmp"
 
-download("http://cygwin.com/setup.exe", INSTALLER) unless File.exist? INSTALLER
+download("http://cygwin.com/setup.exe", INSTALLER) unless recently_modified? INSTALLER
 
 packages = get_packages(PACKAGES_LIST)
 puts "Installing packages: #{packages.join(' ')}"
