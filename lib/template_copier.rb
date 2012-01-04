@@ -28,9 +28,13 @@ class TemplateCopier
 
   def copy_to_user_home(file)
     # If the directory doesn't exist, 'cp' would create a file with the same name,
-    # so let's make sure the directory exists first.
-    # TODO: the directory will be owned by Administrators - change it? (though this happens only when testing)
-    FileUtils.mkdir_p(@user_home)
+    # so let's make sure the directory exists first. This happens usually only during testing.
+    unless Dir.exist?(@user_home)
+      puts "\nCreating home directory: #{@user_home}"
+      FileUtils.mkdir_p(@user_home)
+      run('icacls', @user_home, '/setowner', @username)
+      run('icacls', @user_home, '/grant', @username+':(OI)(CI)F')
+    end
 
     FileUtils.cp(file, @user_home)
   end
