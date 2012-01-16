@@ -18,3 +18,9 @@ rsync
 unzip
 zip
 wget
+
+; required to install Ruby 1.9 from source
+make
+gcc
+libiconv
+openssl
