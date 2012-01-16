@@ -4,6 +4,7 @@
 
 require_relative 'utils'
 require_relative 'template_copier'
+require 'tmpdir'
 
 CWD = File.expand_path('..', File.dirname($0))
 BIN_DIR = "#{CWD}/bin"
@@ -13,6 +14,7 @@ TEMPLATES_DIR = "#{CWD}/templates"
 INSTALLER = "#{BIN_DIR}/setup.exe"
 PACKAGES_LIST = "#{CONFIG_DIR}/packages.txt"
 PATHS_CONFIG = "#{CONFIG_DIR}/paths.rb"
+POST_INSTALL_SCRIPTS = "#{CONFIG_DIR}/[0-9]*.sh"
 
 def get_path(key)
   paths = eval(IO.read(PATHS_CONFIG))
@@ -52,3 +54,20 @@ tc.copy_all
 puts
 puts "Creating 'Open Bash Here' context menu"
 run('reg', 'import', File.join(CYGWIN_HOME, 'OpenBashHere.reg'))
+
+# The following scripts are run inside the just installed Cygwin,
+# so we must configure some environmental variables which would
+# otherwise be missing or incorrect.
+ENV['CYGWIN'] = 'nodosfilewarning'
+ENV['PATH'] = '/usr/local/bin;/usr/bin'
+BASH = File.join(CYGWIN_HOME, 'bin/bash.exe')
+
+Dir.glob(POST_INSTALL_SCRIPTS).sort.each { |file|
+  puts
+  puts "Running #{file}"
+  Dir.mktmpdir { |work_dir|
+    Dir.chdir(work_dir) {
+      run(BASH, file)
+    }
+  }
+}
