@@ -17,3 +17,4 @@ openssh
 rsync
 unzip
 zip
+wget
