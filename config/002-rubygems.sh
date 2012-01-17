@@ -30,3 +30,7 @@ then
 fi
 
 gem install jekyll
+
+
+### Dependencies for Let's Code scripts ###
+gem install imagesize
