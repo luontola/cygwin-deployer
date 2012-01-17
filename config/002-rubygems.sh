@@ -1,20 +1,18 @@
 #!/bin/sh
 set -e
 
+echo RubyGems `gem --version`
 gem update --system
-echo Using RubyGems `gem --version`
 
 
-# http://cinderwick.ca/blog/2011/04/install-jekyll-and-pygments-under-windows-with-cygwin/
-#FILENAME="rubygems-1.8.15"
-#wget http://rubyforge.org/frs/download.php/75711/$FILENAME.tgz
-#tar xaf $FILENAME.tgz
-#cd $FILENAME
-#ruby setup.rb install
-
-
+### Common gems ###
 gem install rspec
 
+
+### Jekyll ###
+
+# Required to build posix-spawn
+gem install rake-compiler
 
 # Jekyll depends on posix-spawn, but the current release cannot be built on Cygwin.
 # There is a fix for posix-spawn, but it's not yet released, so we must build it ourselves.
