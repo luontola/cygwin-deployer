@@ -3,6 +3,7 @@ set -e
 
 echo RubyGems `gem --version`
 gem update --system
+gem update
 
 
 ### Common gems ###
