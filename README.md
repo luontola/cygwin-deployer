@@ -2,7 +2,7 @@
 Cygwin Deployer
 ===============
 
-Automatically installs [Cygwin](http://www.cygwin.com/) using the latest installer into the directories `/config/paths.rb` with the packages `/config/packages.txt` and customizations `/templates/*`. Overwrites any files in `~/` with Cygwin's latest skeleton `/etc/skel` (after applying any customizations `/templates/home/*`). Adds "Open Bash Here" to the context menu of all files and directories in Explorer. Provides a batch script for easily running [rebaseall](http://cygwin.wikia.com/wiki/Rebaseall).
+Automatically installs [Cygwin](http://www.cygwin.com/) using the latest installer into the directories `/config/paths.rb` with the packages `/config/packages.txt` and customizations `/templates/*`. Overwrites any files in `~/` with Cygwin's latest skeleton `/etc/skel` (after applying any customizations `/templates/home/*`). Adds "Open Bash Here" to the context menu of all files and directories in Explorer. Executes custom shell scripts `/config/[0-9]*.sh` to install programs that are not available in Cygwin. Provides a batch script for easily running [rebaseall](http://cygwin.wikia.com/wiki/Rebaseall).
 
 
 Usage
