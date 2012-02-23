@@ -4,5 +4,5 @@
         :CYGWIN_HOME => 'C:\\cygwin',
         :USER_HOME => ENV['HOME'],
         :USERNAME => ENV['USERNAME'],
-        :DOWNLOAD_SITE => 'ftp://ftp.sunet.se/pub/lang/cygwin/',
+        :DOWNLOAD_SITE => 'http://ftp.heanet.ie/pub/cygwin/',
 }
