@@ -1,5 +1,10 @@
 <%= include('/etc/skel/.bash_profile') %>
 
+# Set PATH so it includes user's private bin if it exists
+if [ -d "${HOME}/bin" ]; then
+  PATH="${HOME}/bin:${PATH}"
+fi
+
 # Start in specified directory (http://sources.redhat.com/ml/cygwin/2002-05/msg01645.html)
 # Modifications also needed in cygwin.bat
 if [ "$BASH_HERE" != "" ]; then
