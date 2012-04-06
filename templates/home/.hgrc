@@ -2,3 +2,5 @@
 username = Esko Luontola <esko.luontola@gmail.com>
 
 [extensions]
+purge = 
+rebase = 
