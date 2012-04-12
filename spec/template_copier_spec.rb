@@ -59,12 +59,6 @@ describe TemplateCopier do
     IO.binread(file(@user_home, '.skeleton_file')).should == "original content\nuser customizations"
   end
 
-  it "creates a symbolic link from /home/username to the user's real home directory" do
-    symlink = file(@cygwin_home, 'home/johndoe')
-    symlink.should be_a_file
-    IO.binread(symlink).should include(@user_home.encode('UTF-16LE').force_encoding('US-ASCII'))
-  end
-
   it "keeps Unix newlines in copied files" do
     IO.binread(file(@cygwin_home, 'unix_newlines')).should == "unix\nnewlines"
   end

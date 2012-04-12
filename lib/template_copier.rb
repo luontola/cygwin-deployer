@@ -20,8 +20,6 @@ class TemplateCopier
     all_files_in(profile_skeleton).each { |file| copy_to_user_home(file) }
 
     all_files_in(@templates_dir).each { |file| process_template(file) }
-
-    cygwin_symlink(@user_home, File.join(@cygwin_home, 'home', @username))
   end
 
   private
@@ -34,7 +32,7 @@ class TemplateCopier
     # If the directory doesn't exist, 'cp' would create a file with the same name,
     # so let's make sure the directory exists first. This happens usually only during testing.
     unless Dir.exist?(@user_home)
-      puts "\nCreating home directory: #{@user_home}"
+      puts "\nCreating home directory: #@user_home"
       FileUtils.mkdir_p(@user_home)
       run('icacls', @user_home, '/setowner', @username)
       run('icacls', @user_home, '/grant', @username+':(OI)(CI)F')
@@ -62,21 +60,6 @@ class TemplateCopier
     puts "Writing: #{file}"
     create_parent_dirs(file)
     File.open(file, 'wb') { |f| f.write(content) }
-  end
-
-  def cygwin_symlink(target, link_name)
-    bytes = []
-    bytes += "!<symlink>".encode('US-ASCII').bytes.to_a
-    bytes += [255, 254] # BOM
-    bytes += target.encode('UTF-16LE').bytes.to_a
-    bytes += [0, 0] # string terminator
-
-    create_parent_dirs(link_name)
-    File.open(link_name, 'wb') { |file|
-      bytes.each { |byte| file.putc(byte) }
-    }
-
-    run('attrib', '-A', '+S', link_name)
   end
 
   def create_parent_dirs(file)
