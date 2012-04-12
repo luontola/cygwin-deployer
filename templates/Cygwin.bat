@@ -14,6 +14,10 @@ set HOME=%USERPROFILE%
 rem set LANG=en_US.UTF-8
 set LANG=C.UTF-8
 
+: Start X server (if not yet started)
+"<%= @cygwin_home %>\bin\run.exe" XWin -multiwindow -clipboard -silent-dup-error
+set DISPLAY=:0
+
 : Start the shell
 rem bash --login -i
 rem rxvt -sr -g 140x50 -sl 10000 -bg black -fg white -fn "Bitstream Vera Sans Mono" -fb "Bitstream Vera Sans Mono Bold" -e /usr/bin/bash --login -i
