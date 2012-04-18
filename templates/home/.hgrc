@@ -1,5 +1,10 @@
 [ui]
 username = Esko Luontola <esko.luontola@gmail.com>
+editor = nano
+
+[alias]
+diff = diff --git
+log = log --git
 
 [extensions]
 purge = 
