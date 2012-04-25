@@ -16,3 +16,9 @@
 [gui]
 	encoding = utf-8
 	gcwarning = false
+[alias]
+	st = status
+	di = diff
+	ci = commit
+	co = checkout
+	br = branch
