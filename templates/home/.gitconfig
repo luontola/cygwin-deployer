@@ -22,3 +22,5 @@
 	ci = commit
 	co = checkout
 	br = branch
+	chmod-644 = update-index --add --chmod=-x
+	chmod-755 = update-index --add --chmod=+x
