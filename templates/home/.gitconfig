@@ -19,6 +19,7 @@
 [alias]
 	st = status
 	di = diff
+	dic = diff --cached
 	ci = commit
 	co = checkout
 	br = branch
