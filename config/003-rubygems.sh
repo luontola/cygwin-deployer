@@ -32,5 +32,12 @@ fi
 gem install jekyll
 
 
+### nanoc ###
+
+gem install nanoc
+gem install kramdown
+gem install adsf
+
+
 ### Dependencies for Let's Code scripts ###
 gem install imagesize
