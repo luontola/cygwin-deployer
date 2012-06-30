@@ -20,6 +20,9 @@ zip
 wget
 curl
 
+; signing maven artifacts
+gnupg
+
 ; required by gitk, git-gui
 xorg-server
 
