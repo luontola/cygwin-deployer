@@ -5,6 +5,10 @@ if [ -d "${HOME}/bin" ]; then
   PATH="${HOME}/bin:${PATH}"
 fi
 
+# Use Windows TEMP also in Cygwin to let Java programs find each other (via hsperfdata files)
+TEMP="${HOME}/AppData/Local/Temp"
+TMP="${HOME}/AppData/Local/Temp"
+
 # Start in specified directory (http://sources.redhat.com/ml/cygwin/2002-05/msg01645.html)
 # Modifications also needed in cygwin.bat
 if [ "$BASH_HERE" != "" ]; then
