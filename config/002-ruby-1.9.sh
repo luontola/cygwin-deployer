@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-if [[ `ruby -v` == *1.9.2p290* ]]
+if [[ `ruby -v` == *1.9.3p392* ]]
 then
     echo Already installed: `ruby -v`
     exit 0
@@ -11,7 +11,7 @@ fi
 # Installing Ruby 1.9 from source
 # http://www.curphey.com/2010/05/installing-and-configuring-ruby-1-9-from-source-using-cygwin/
 
-FILENAME="ruby-1.9.2-p290"
+FILENAME="ruby-1.9.3-p392"
 wget http://ftp.ruby-lang.org/pub/ruby/1.9/$FILENAME.tar.bz2
 tar xaf $FILENAME.tar.bz2
 cd $FILENAME

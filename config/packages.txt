@@ -31,3 +31,5 @@ make
 gcc
 libiconv
 openssl
+openssl-devel
+libyaml-devel
