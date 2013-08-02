@@ -18,7 +18,7 @@ if [ "$BASH_HERE" != "" ]; then
   BASH_HERE=$( cygpath "$BASH_HERE" )
   # if a regular file, change to its directory
   if [ -f "$BASH_HERE" ]; then
-    BASH_HERE=$BASH_HERE/..
+    BASH_HERE="$BASH_HERE/.."
   fi
   cd "$BASH_HERE"
 fi
