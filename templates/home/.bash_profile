@@ -5,9 +5,13 @@ if [ -d "${HOME}/bin" ]; then
   PATH="${HOME}/bin:${PATH}"
 fi
 
-# Use Windows TEMP also in Cygwin to let Java programs find each other (via hsperfdata files)
-TEMP="${HOME}/AppData/Local/Temp"
-TMP="${HOME}/AppData/Local/Temp"
+# Use same temporary directory as Windows
+# Enables Windows and Cygwin JVMs to see each other (via JMX's memory-mapped hsperfdata files)
+WIN_TEMP=$( cygpath "${LOCALAPPDATA}/Temp" )
+if [ -d "${WIN_TEMP}" ]; then
+  TEMP="${WIN_TEMP}"
+  TMP="${WIN_TEMP}"
+fi
 
 # Start in specified directory (http://sources.redhat.com/ml/cygwin/2002-05/msg01645.html)
 # Modifications also needed in cygwin.bat
