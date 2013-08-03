@@ -30,6 +30,7 @@ then
 fi
 
 gem install jekyll
+gem install rdiscount
 
 
 ### nanoc ###
