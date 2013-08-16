@@ -17,12 +17,12 @@ fi
 # Modifications also needed in cygwin.bat
 if [ "$BASH_HERE" != "" ]; then
   # remove surrounding quotes
-  BASH_HERE=$( echo $BASH_HERE | tr -d \" )
+  BASH_HERE=$( echo "$BASH_HERE" | tr -d \" )
   # convert Windows path to Unix path
   BASH_HERE=$( cygpath "$BASH_HERE" )
   # if a regular file, change to its directory
   if [ -f "$BASH_HERE" ]; then
-    BASH_HERE="$BASH_HERE/.."
+    BASH_HERE=$( dirname "$BASH_HERE" )
   fi
   cd "$BASH_HERE"
 fi
