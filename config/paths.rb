@@ -4,6 +4,6 @@
         :CYGWIN_HOME => 'C:\\cygwin',
         :USER_HOME => ENV['HOME'],
         :USERNAME => ENV['USERNAME'],
-        :INSTALLER_URL => 'http://cygwin.com/setup-x86.exe',
+        :INSTALLER_URL => 'http://cygwin.com/setup-x86_64.exe',
         :DOWNLOAD_SITE => 'http://ftp.heanet.ie/pub/cygwin/',
 }
