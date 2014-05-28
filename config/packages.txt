@@ -25,6 +25,7 @@ gnupg
 
 ; required by gitk, git-gui
 xorg-server
+xinit
 
 ; required to install Ruby 1.9 from source
 make
