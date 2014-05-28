@@ -11,7 +11,7 @@ BIN_DIR = "#{CWD}/bin"
 CONFIG_DIR = "#{CWD}/config"
 TEMPLATES_DIR = "#{CWD}/templates"
 
-INSTALLER = "#{BIN_DIR}/setup-x86.exe"
+INSTALLER = "#{BIN_DIR}/setup.exe"
 PACKAGES_LIST = "#{CONFIG_DIR}/packages.txt"
 PATHS_CONFIG = "#{CONFIG_DIR}/paths.rb"
 POST_INSTALL_SCRIPTS = "#{CONFIG_DIR}/[0-9]*.sh"
@@ -24,10 +24,11 @@ end
 CYGWIN_HOME = get_path(:CYGWIN_HOME)
 USER_HOME = get_path(:USER_HOME)
 USERNAME = get_path(:USERNAME)
+INSTALLER_URL = get_path(:INSTALLER_URL)
 DOWNLOAD_SITE = get_path(:DOWNLOAD_SITE)
 LOCAL_PACKAGE_DIR = "#{CYGWIN_HOME}\\setup"
 
-download("http://cygwin.com/setup-x86.exe", INSTALLER) unless recently_modified? INSTALLER
+download(INSTALLER_URL, INSTALLER) unless recently_modified? INSTALLER
 
 packages = get_packages(PACKAGES_LIST)
 puts "Installing packages: #{packages.join(' ')}"
