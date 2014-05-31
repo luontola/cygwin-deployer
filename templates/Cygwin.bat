@@ -12,7 +12,8 @@ set HOME=%USERPROFILE%
 
 : Other environmental variables
 rem set LANG=en_US.UTF-8
-set LANG=C.UTF-8
+rem set LANG=C.UTF-8
+set LANG=en_US.utf8
 
 : Start X server (if not yet started)
 "<%= @cygwin_home %>\bin\run.exe" XWin -multiwindow -clipboard -silent-dup-error

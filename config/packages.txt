@@ -20,16 +20,18 @@ zip
 wget
 curl
 
+; programming languages
+ruby
+python
+
 ; signing maven artifacts
 gnupg
 
 ; required by gitk, git-gui
 xorg-server
+xinit
 
-; required to install Ruby 1.9 from source
+; required for compiling some ruby gem native extensions
 make
-gcc
-libiconv
-openssl
-openssl-devel
-libyaml-devel
+gcc-g++
+libcrypt-devel
