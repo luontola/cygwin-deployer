@@ -34,4 +34,7 @@ xinit
 ; required for compiling some ruby gem native extensions
 make
 gcc-g++
+pkg-config
 libcrypt-devel
+libffi-devel
+cygwin32-libffi

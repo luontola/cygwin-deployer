@@ -9,6 +9,7 @@ gem update
 
 ### Common gems ###
 gem install rspec
+gem install bundler
 
 ### nanoc ###
 gem install nanoc
