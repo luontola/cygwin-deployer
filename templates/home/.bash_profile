@@ -26,3 +26,12 @@ if [ "$BASH_HERE" != "" ]; then
   fi
   cd "$BASH_HERE"
 fi
+
+# Start ssh-agent
+# http://mah.everybody.org/docs/ssh
+# https://developer.github.com/guides/using-ssh-agent-forwarding/
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  eval `ssh-agent -s`
+  trap "kill $SSH_AGENT_PID" 0
+fi
+ssh-add ~/.ssh/id_rsa
