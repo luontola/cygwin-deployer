@@ -7,6 +7,11 @@ alias ls='ls --color=auto'
 export EDITOR="nano"
 export CYGWIN="nodosfilewarning"
 
+# Fix for Jekyll on Cygwin
+# http://nathanielstory.com/2013/12/28/jekyll-on-windows-with-cygwin.html
+# https://github.com/jekyll/jekyll/issues/1383
+export COMSPEC=/cygdrive/c/Windows/System32/cmd.exe
+
 # See http://code.google.com/p/mintty/wiki/Tips#Changing_colours
 echo -ne '\e]4;0;#000000\a'   # black
 echo -ne '\e]4;1;#BF0000\a'   # red
