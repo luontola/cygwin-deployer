@@ -16,4 +16,8 @@ gem install kramdown
 gem install adsf
 
 ### Dependencies for Let's Code scripts ###
-gem install imagesize
+gem install image_size
+
+### GitHub Pages ###
+gem install jekyll
+gem install rdiscount
