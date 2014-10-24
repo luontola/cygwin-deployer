@@ -20,6 +20,7 @@ zip
 wget
 curl
 nc
+patch
 
 ; programming languages
 ruby
