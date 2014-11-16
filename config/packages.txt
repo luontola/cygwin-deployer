@@ -26,9 +26,6 @@ patch
 ruby
 python
 
-; signing maven artifacts
-gnupg
-
 ; required by gitk, git-gui
 xorg-server
 xinit
